@@ -35,7 +35,7 @@ HiNT for translocations detection
 
 This code is free software; you can redistribute it and/or modify it.
 
-@version: $2.2.7$
+@version: $2.2.8$
 @author: Su Wang
 @contact: wangsu0623@gmail.com
 """
@@ -52,7 +52,7 @@ def prepare_argparser():
     epilog = "For command line options of each command, type: %(prog)s COMMAND -h"
 
     argparser = ap.ArgumentParser( description = description, epilog = epilog) #, usage = usage
-    HiNT_VERSION = '2.2.7'
+    HiNT_VERSION = '2.2.8'
     argparser.add_argument("--version", action="version", version="%(prog)s " + HiNT_VERSION)
     subparsers = argparser.add_subparsers( help = "sub-command help", dest = 'subcommand_name' ) #help="sub-command help"
 
@@ -123,6 +123,8 @@ def add_cnv_parser(subparsers):
                          resolution should be set via parameter -r; or a sparse | dense format matrix file whole genome widely (not suggest when using a high resolution)")
     cnvparser.add_argument("--refdir",dest="referencedir",type=str,required = True,
                          help="the reference directory that downloaded from dropbox dropbox. (https://www.dropbox.com/sh/2ufsyu4wvrboxxp/AABk5-_Fwy7jdM_t0vIsgYf4a?dl=0.)")
+    cnvparser.add_argument("--maptrack",dest="maptrack",choices = ("24mer","36mer","50mer"), default="50mer",required = False,
+                         help="Choose which ENCODE mappability track should be used for regression. See more details http://genome.ucsc.edu/cgi-bin/hgTrackUi?db=hg18&g=wgEncodeMapability. DEFAULT: 50mer")
     cnvparser.add_argument("--bicseq",dest="bicseq",type=str,required = True, help="/path/to/bicseqDir/")
     cnvparser.add_argument("--doiter",dest="doIterative",action='store_true',help = "If this switch is on, HiNT will do the iterative regression model by removing copy numer variated regions, DEFAULT=False",required=False,default=False)
     cnvparser.add_argument("-f","--format",dest="format",type=str,required = False, choices = ("cooler","juicer"), default="cooler",

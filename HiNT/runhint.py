@@ -80,8 +80,8 @@ def cnvrun(args):
 
     binsize = opts.resolution
     GCPercent_1kb = os.path.join(opts.referencedir, '%s_1kb_GCPercent.bed'%opts.genome)
-    mappablity_track = os.path.join(opts.referencedir, '%s_mappability_50mer.bdg.gz'%opts.genome)
-    mappablity_trackIndex = os.path.join(opts.referencedir, '%s_mappability_50mer.bdg.gz.tbi'%opts.genome)
+    mappablity_track = os.path.join(opts.referencedir, '%s_mappability_%s.bdg.gz'%(opts.genome,opt.maptrack))
+    mappablity_trackIndex = os.path.join(opts.referencedir, '%s_mappability_%s.bdg.gz.tbi'%(opts.genome,opt.maptrack))
     restrictionSites = os.path.join(opts.referencedir, '%s_%s_enzymeSites.txt'%(opts.genome,opts.enzyme))
     chroms,regressionFileAllchroms,regressionChromFilesInfo = prepareData(opts.name,opts.outdir,opts.referencedir,chromlf,rowSumFilesInfo,binsize,GCPercent_1kb,mappablity_track,restrictionSites) #Prepare the other data Information for regression
     #print chroms
